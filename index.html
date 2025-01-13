@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euphoria Layout</title>
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdf7ef;
+        }
+
+        /* Styles for Header */
+        .header {
+            background-color: #f7e7ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #e6e1db;
+        }
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+        .header nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .header nav a, .header nav .dropdown {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+        }
+        .header nav a:hover, .header nav .dropdown:hover > a {
+            background-color: #e6e1db;
+            border-radius: 5px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f8f5f0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e6e1db;
+            width: 200px;
+            z-index: 1000;
+        }
+        .dropdown-content a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #f7e7ce;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Banner */
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Best Seller Section */
+.product {
+    position: relative;
+    width: 250px;
+    margin: 10px;
+    text-align: center;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+.overlay span {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-buttons button {
+    background-color: #d4b68a; /* Champagne color */
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.product-buttons button:hover {
+    background-color: #8d4c36; /* Darker shade for hover */
+}
+
+.product-buttons a {
+    text-decoration: none;
+}
+
+        .best-sellers {
+            margin: 40px auto;
+            max-width: 1200px;
+            text-align: center;
+        }
+        .best-sellers h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .best-sellers .product-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .product-grid .product {
+            position: relative;
+            overflow: hidden;
+            width: 250px;
+            height: 400px;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .product-grid .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-grid .product:hover img {
+            transform: scale(1.1);
+        }
+        .product-grid .product:hover {
+            transform: translateY(-10px);
+        }
+    footer {
+            background-color: #f8f5f0;
+            padding: 40px 20px;
+            border-top: 1px solid #e6e1db;
+        }
+
+        footer .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            margin: 10px;
+            min-width: 150px;
+        }
+
+        footer .footer-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-section ul li a {
+            text-decoration: none;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        footer .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7a7a7a;
+        }
+
+
+        /* Caption for Hover Effect */
+        .product .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .product:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Price and Name */
+        .product .price {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+   </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <img src="header/logo.png" alt="Euphoria Essence Logo">
+        <div class="header-icons">
+                   <a href="sign_up.html"><img src="button/person.png" alt="My Account"></a>
+        </div>
+        <nav>
+            <a href="index.html">NEW</a>
+            <div class="dropdown">
+                <a href="#">FRAGRANCE</a>
+                <div class="dropdown-content">
+                    <a href="mens.html">Men</a>
+                    <a href="womens.html">Women</a>
+                    <a href="unisex.html">Unisex</a>
+                </div>
+            </div>
+            <a href="gift.html">GIFT</a>
+            <a href="care.html">CARE</a>
+        </nav>
+    </header>
+
+    <!-- Best Seller Section -->
+    <section class="best-sellers">
+        <h2>Best Sellers</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="best seller/1.png" alt="Perfume 1">
+                <div class="overlay">Rose Noir</div>
+ <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+
+                </div>
+          <div class="product">
+    <div class="image-container">
+        <img src="best seller/2.png" alt="Perfume 2">
+        <div class="overlay">
+            <span>Versace Eros</span>
+            <div class="product-buttons">
+                <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product">
+    <div class="image-container">
+        <img src="best seller/3.png" alt="Perfume 3">
+        <div class="overlay">
+            <span>One Million</span>
+            <div class="product-buttons">
+                <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product">
+    <div class="image-container">
+        <img src="best seller/4.png" alt="Perfume 4">
+        <div class="overlay">
+            <span>L'Homme Prada</span>
+            <div class="product-buttons">
+                <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product">
+    <div class="image-container">
+        <img src="best seller/5.png" alt="Perfume 5">
+        <div class="overlay">
+            <span>Milk & Cookies</span>
+            <div class="product-buttons">
+                <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+               
+            </div>
+        </div>
+    </section>
+
+   <! <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="https://wa.me/01155051996">Contact Us</a></li>
+                   
+                    <li><a href="privacy.html">Privacy & Policy</a></li>
+                </ul>
+            </div>
+                       <div class="footer-section">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="about.html">Corporate Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/roshadmzln/profilecard/?igsh=dml3dGZod2Z6dGlr">Instagram</a></li>
+                   
+                    <li><a href="https://www.twitter.com/@roshadmzln">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sign Up</h3>
+                <ul>
+                    <li><a href="sign_up.html">Sign Up for Updates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Euphoria Essence. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script>
+    function moveSlider(sliderId, direction) {
+        const slider = document.getElementById(sliderId);
+        const scrollAmount = 200; // Adjust this value to control how much the slider moves per click
+        slider.scrollLeft += direction * scrollAmount;
+    }
+</script>
+
+</body>
+</html>

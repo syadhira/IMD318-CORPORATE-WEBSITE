@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Sets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffff0;
+        }
+
+        .header {
+            background-color: #f7e7ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #e6e1db;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .header nav a, .header nav .dropdown {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        .header nav a:hover, .header nav .dropdown:hover > a {
+            background-color: #f7e7ce;
+            border-radius: 5px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f8f5f0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e6e1db;
+            width: 200px;
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e6e1db;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .banner img {
+           width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    object-fit: cover;
+        }
+
+
+
+        /* Video Section */
+        .video-section {
+            text-align: center;
+            margin: 40px 20px;
+            background-color: #f0e1c6; /* Champagne color */
+            padding: 20px;
+        }
+
+       .video-section video {
+     width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    object-fit: cover;
+        }
+
+}
+
+
+        .video-section .caption {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Gift Set Slider Section */
+        .gift-slider-section {
+            padding: 40px 20px;
+            background-color: #f8f5f0;
+        }
+
+        .slider-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            overflow-x: scroll;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        .slider-container .gift {
+            flex-shrink: 0;
+            width: 250px;
+            text-align: center;
+        }
+
+        .slider-container .gift img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .slider-container .gift .gift-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .slider-container .gift .gift-buttons button,
+        .slider-container .gift .gift-buttons a {
+            background-color: #d4b68a; /* Light champagne color */
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .gift-buttons .add-to-cart {
+            background-color: #8d4c36; /* Darker champagne for button */
+        }
+
+        .slider-container .gift .gift-buttons a:hover,
+        .slider-container .gift .gift-buttons button:hover {
+            background-color: #e1d8c1;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 30px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .slider-button.left {
+            left: 10px;
+        }
+
+        .slider-button.right {
+            right: 10px;
+        }
+
+        /* Gift Set Grid Section */
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .gift-grid .gift {
+            text-align: center;
+        }
+
+        .gift-grid .gift img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        footer {
+            background-color: #f8f5f0;
+            padding: 40px 20px;
+            border-top: 1px solid #e6e1db;
+        }
+
+        footer .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            margin: 10px;
+            min-width: 150px;
+        }
+
+        footer .footer-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-section ul li a {
+            text-decoration: none;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        footer .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7a7a7a;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+<!-- Header Section -->
+  <header class="header">
+    <img src="header/logo.png" alt="Euphoria Essence Logo">
+    <div class="header-icons">
+           <a href="sign_up.html"><img src="button/person.png" alt="My Account"></a>
+    </div>
+    <nav>
+        <a href="index.html">NEW</a>
+        <div class="dropdown">
+            <a href="#">FRAGRANCE</a>
+            <div class="dropdown-content">
+                <a href="mens.html">Men</a>
+                <a href="womens.html">Women</a>
+                <a href="unisex.html">Unisex</a>
+            </div>
+        </div>
+        <a href="gift.html">GIFT</a>
+        <a href="care.html">CARE</a>
+    </nav>
+</header>
+
+<!-- Banner Section -->
+<section class="banner">
+    <img src="header/1.png" alt="Gift Sets">
+</section>
+
+<!-- Video Section -->
+<!-- Video Section -->
+<section class="video-section">
+    <div class="caption">Discover Our Exclusive Gift Sets !</div>
+    <video autoplay muted loop playsinline>
+        <source src="video/gift.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+
+<!-- Gift Set Slider Section -->
+<section class="gift-slider-section">
+    <div class="slider-container">
+        <div class="gift">
+            <img src="gift/gift 1.jpg" alt="Gift Set 1">
+           <!-- Changed image for Women's -->
+            <h3>Ameerat Al Arab</h3>
+                   <p><strong>Price:</strong> RM180</p>
+                    
+                   <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+
+        </div>
+        <div class="gift">
+            <img src="gift/gift 2.jpg" alt="Gift Set 2">
+            <h3>Masion Alhambra</h3>
+                   <p><strong>Price:</strong> RM260</p>
+  
+                    <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+
+        </div>
+        <div class="gift">
+            <img src="gift/gift 3.jpg" alt="Gift Set 3">
+            <h3>Lattafa Gift Set</h3>
+                   <p><strong>Price:</strong> RM320</p>
+                                     <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+
+        </div>
+        <div class="gift">
+            <img src="gift/gift 4.jpg" alt="Gift Set 4">
+             <h3>Luxury Gift Set</h3>
+                   <p><strong>Price:</strong> RM300</p>
+                   
+                   <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+
+        </div>
+        <button class="slider-button left" onclick="moveSlider(-1)">&#8592;</button>
+        <button class="slider-button right" onclick="moveSlider(1)">&#8594;</button>
+    </div>
+</section>
+
+ <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="https://wa.me/01155051996">Contact Us</a></li>
+                   
+                    <li><a href="privacy.html">Privacy & Policy</a></li>
+                </ul>
+            </div>
+                       <div class="footer-section">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="about.html">Corporate Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/roshadmzln/profilecard/?igsh=dml3dGZod2Z6dGlr">Instagram</a></li>
+                   
+                    <li><a href="https://www.twitter.com/@roshadmzln">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sign Up</h3>
+                <ul>
+                    <li><a href="sign_up.html">Sign Up for Updates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Euphoria Essence. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script>
+    function moveSlider(direction) {
+        const slider = document.querySelector('.slider-container');
+        const scrollAmount = 250; // Adjust this value to control how much the slider moves
+        slider.scrollLeft += direction * scrollAmount;
+    }
+</script>
+
+</body>
+</html>

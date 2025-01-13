@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care - Euphoria Essence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffff0;
+        }
+
+        .header {
+            background-color: #f7e7ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #e6e1db;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .header nav a, .header nav .dropdown {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        .header nav a:hover, .header nav .dropdown:hover > a {
+            background-color: #f7e7ce;
+            border-radius: 5px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f8f5f0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e6e1db;
+            width: 200px;
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e6e1db;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+
+
+
+        .care-section {
+            padding: 50px 20px;
+        }
+
+        .care-section h1 {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Grid layout for images */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .image-container img {
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 8px;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.2);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .image-description {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .image-container:hover .image-description {
+            display: block;
+        }
+
+        footer {
+            background-color: #f8f5f0;
+            padding: 40px 20px;
+            border-top: 1px solid #e6e1db;
+        }
+
+        footer .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            margin: 10px;
+            min-width: 150px;
+        }
+
+        footer .footer-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-section ul li a {
+            text-decoration: none;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        footer .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7a7a7a;
+        }
+    </style>
+</head>
+<body>
+   <!-- Header Section -->
+  <header class="header">
+    <img src="header/logo.png" alt="Euphoria Essence Logo">
+    <div class="header-icons">
+        <a href="add_to_cart.html"><img src="button/cart.png" alt="Add to Cart"></a>
+        <a href="sign_up.html"><img src="button/person.png" alt="My Account"></a>
+    </div>
+    <nav>
+        <a href="index.html">NEW</a>
+        <div class="dropdown">
+            <a href="#">FRAGRANCE</a>
+            <div class="dropdown-content">
+                <a href="mens.html">Men</a>
+                <a href="womens.html">Women</a>
+                <a href="unisex.html">Unisex</a>
+            </div>
+        </div>
+        <a href="gift.html">GIFT</a>
+        <a href="care.html">CARE</a>
+    </nav>
+</header>
+
+    <!-- Care Section -->
+    <section class="care-section">
+        <h1>How to Care for Your Perfume</h1>
+        <div class="image-grid">
+            <div class="image-container">
+                <img src="care/storage.jpg" alt="Care Tip 1">
+                <div class="image-caption">Store Your Perfume Properly</div>
+                <div class="image-description">To keep your perfume lasting longer, store it in a cool, dry place, away from direct sunlight.</div>
+            </div>
+            <div class="image-container">
+                <img src="care/close.jpg" alt="Care Tip 2">
+                <div class="image-caption">Keep the Bottle Closed</div>
+                <div class="image-description">Always keep the bottle tightly closed to avoid exposure to air, which can change the fragrance.</div>
+            </div>
+            <div class="image-container">
+                <img src="care/spraying on cloth.jpg" alt="Care Tip 3">
+                <div class="image-caption">Avoid Spraying on Clothing</div>
+                <div class="image-description">Perfume is best applied to your skin, as it blends with your body’s natural oils.</div>
+            </div>
+            <div class="image-container">
+                <img src="care/apply.jpg" alt="Care Tip 4">
+                <div class="image-caption">Don’t Over Apply</div>
+                <div class="image-description">Less is more. A few spritzes on pulse points (wrists, neck) are enough to create a lasting fragrance.</div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="https://wa.me/01155051996">Contact Us</a></li>
+                   
+                    <li><a href="privacy.html">Privacy & Policy</a></li>
+                </ul>
+            </div>
+                       <div class="footer-section">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="about.html">Corporate Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/roshadmzln/profilecard/?igsh=dml3dGZod2Z6dGlr">Instagram</a></li>
+                   
+                    <li><a href="https://www.twitter.com/@roshadmzln">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sign Up</h3>
+                <ul>
+                    <li><a href="sign_up.html">Sign Up for Updates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Euphoria Essence. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+</body>
+</html>

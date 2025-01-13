@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffff0;
+        }
+
+        .header {
+            background-color: #f7e7ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #e6e1db;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .header nav a, .header nav .dropdown {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        .header nav a:hover, .header nav .dropdown:hover > a {
+            background-color: #f7e7ce;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f8f5f0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e6e1db;
+            width: 200px;
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e6e1db;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .banner img {
+           width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    object-fit: cover;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .brand-section {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .brand-slider {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            overflow-x: scroll;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+        }
+
+        .brand-slider .product {
+            flex-shrink: 0;
+            width: 200px;
+            height: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .brand-slider .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-slider .product:hover img {
+            transform: scale(1.1);
+        }
+
+        .brand-slider .product:hover {
+            transform: translateY(-10px);
+        }
+
+        .caption-box {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #f8f5f0;
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e6e1db;
+            text-align: left;
+        }
+
+        .product:hover .caption-box {
+            display: block;
+        }
+
+        .caption-box h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .caption-box p {
+            margin: 5px 0;
+        }
+
+        .product-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        
+        footer {
+            background-color: #f8f5f0;
+            padding: 40px 20px;
+            border-top: 1px solid #e6e1db;
+        }
+
+        footer .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            margin: 10px;
+            min-width: 150px;
+        }
+
+        footer .footer-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-section ul li a {
+            text-decoration: none;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        footer .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7a7a7a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <img src="header/logo.png" alt="Euphoria Essence Logo">
+        <div class="header-icons">
+            <a href="sign_up.html"><img src="button/person.png" alt="My Account"></a>
+        </div>
+        <nav>
+            <a href="index.html">NEW</a>
+            <div class="dropdown">
+                <a href="#">FRAGRANCE</a>
+                <div class="dropdown-content">
+                    <a href="mens.html">Men</a>
+                    <a href="womens.html">Women</a>
+                    <a href="unisex.html">Unisex</a>
+                </div>
+            </div>
+            <a href="gift.html">GIFT</a>
+            <a href="care.html">CARE</a>
+        </nav>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <img src="header/unisexheader.jpg" alt="Unisex Fragrance">
+    </section>
+
+    <!-- Centered Caption -->
+    <div class="caption">
+       Unisex Fragrances
+    </div>
+
+    <div class="description">
+        Explore our collection of unisex fragrances that transcend traditional boundaries, offering an array of scents perfect for everyone. Whether you prefer fresh, floral, woody, or spicy notes, these versatile perfumes are designed to complement your unique style and personality. Discover a fragrance that speaks to you, and wear it confidently for any occasion. Uncover the perfect scent for all.
+    </div>
+
+    <!-- Brand Section - Euphoria Essence -->
+    <section class="brand-section">
+        <h2>Euphoria Essence</h2>
+        <div class="brand-slider" id="euphoria-slider">
+            <!-- Product 1 -->
+            <div class="product">
+                <img src="unisex/franceseunisex1.svg" alt="Unisex Perfume 1">
+                <div class="caption-box">
+                    <h3>Le Roses</h3>
+                    <p><strong>Size:</strong> 50ml</p>
+                    <p><strong>Price:</strong> RM65</p>
+                    <p><strong>Description:</strong> A fresh and floral scent with hints of jasmine and rose.</p>
+                    <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product">
+                <img src="unisex/franceseunisex2.svg" alt="Unisex Perfume 2">
+                <div class="caption-box">
+                    <h3>Avenue</h3>
+                    <p><strong>Size:</strong> 50ml</p>
+                    <p><strong>Price:</strong> RM65</p>
+                    <p><strong>Description:</strong> A woody scent with earthy notes of sandalwood and cedar.</p>
+                   <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product">
+                <img src="unisex/franceseunisex3.svg" alt="Unisex Perfume 3">
+                <div class="caption-box">
+                    <h3>Habanera</h3>
+                    <p><strong>Size:</strong> 50ml</p>
+                    <p><strong>Price:</strong> RM65</p>
+                    <p><strong>Description:</strong> A citrus blend with notes of lemon, bergamot, and orange blossom.</p>
+                 <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product">
+                <img src="unisex/franceseunisex4.svg" alt="Unisex Perfume 4">
+                <div class="caption-box">
+                    <h3>Maximouse</h3>
+                    <p><strong>Size:</strong> 50ml</p>
+                    <p><strong>Price:</strong> RM65</p>
+                    <p><strong>Description:</strong> A rich floral fragrance with hints of lavender and peony.</p>
+                   <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product">
+                <img src="unisex/franceseunisex5.svg" alt="Unisex Perfume 5">
+                <div class="caption-box">
+                    <h3>Bakarat Royal</h3>
+                    <p><strong>Size:</strong> 50ml</p>
+                    <p><strong>Price:</strong> RM65</p>
+                    <p><strong>Description:</strong> A spicy and warm scent with cinnamon and amber notes.</p>
+                  <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="https://wa.me/01155051996">Contact Us</a></li>
+                   
+                    <li><a href="privacy.html">Privacy & Policy</a></li>
+                </ul>
+            </div>
+                       <div class="footer-section">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="about.html">Corporate Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/roshadmzln/profilecard/?igsh=dml3dGZod2Z6dGlr">Instagram</a></li>
+                   
+                    <li><a href="https://www.twitter.com/@roshadmzln">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sign Up</h3>
+                <ul>
+                    <li><a href="sign_up.html">Sign Up for Updates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Euphoria Essence. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+    <script>
+        function moveSlider(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            const scrollAmount = 200;
+            slider.scrollLeft += direction * scrollAmount;
+        }
+    </script>
+
+</body>
+</html>

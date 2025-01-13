@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffff0;
+        }
+
+        .header {
+            background-color: #f7e7ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #e6e1db;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .header nav a, .header nav .dropdown {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        .header nav a:hover, .header nav .dropdown:hover > a {
+            background-color: #f7e7ce;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f8f5f0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e6e1db;
+            width: 200px;
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f7e7ce;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .banner img {
+           width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    object-fit: cover;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .brand-section {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .brand-slider {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            overflow-x: scroll;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+        }
+
+        .brand-slider .product {
+            flex-shrink: 0;
+            width: 200px;
+            height: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .brand-slider .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .brand-slider .product:hover img {
+            transform: scale(1.1);
+        }
+
+        .brand-slider .product:hover {
+            transform: translateY(-10px);
+        }
+
+        .caption-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .brand-slider .product:hover .caption-box {
+            opacity: 1;
+        }
+
+        .caption-box h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .caption-box p {
+            font-size: 14px;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 30px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .slider-button.left {
+            left: 10px;
+        }
+
+        .slider-button.right {
+            right: 10px;
+        }
+
+        .product-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        
+        footer {
+            background-color: #f8f5f0;
+            padding: 40px 20px;
+            border-top: 1px solid #e6e1db;
+        }
+
+        footer .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            margin: 10px;
+            min-width: 150px;
+        }
+
+        footer .footer-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-section ul li a {
+            text-decoration: none;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        footer .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7a7a7a;
+        }
+
+        @media (max-width: 200px) {
+            .header nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .brand-slider {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            footer .footer-sections {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            footer .footer-section {
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+ <!-- Header Section -->
+    <header class="header">
+        <img src="header/logo.png" alt="Euphoria Essence Logo">
+        <div class="header-icons">
+                      <a href="sign_up.html"><img src="button/person.png" alt="My Account"></a>
+        </div>    
+        <nav>
+            <a href="index.html">NEW</a>
+            <div class="dropdown">
+                <a href="#">FRAGRANCE</a>
+                <div class="dropdown-content">
+                    <a href="mens.html">Men</a>
+                    <a href="womens.html">Women</a>
+                    <a href="unisex.html">Unisex</a>
+                </div>
+            </div>
+            <a href="gift.html">GIFT</a>
+            <a href="care.html">CARE</a>
+        </nav>
+    </header>
+
+<!-- Banner Section -->
+<section class="banner">
+    <img src="header/mensheader.jpg" alt="Men's Fragrance">
+</section>
+
+<!-- Centered Caption -->
+<div class="caption">
+   Men's Fragrances
+</div>
+
+<div class="description">
+    Our men’s fragrances are an embodiment of sophistication, timeless elegance, and masculinity, designed to elevate your presence. Each scent is meticulously crafted with the finest ingredients, blending tradition with a contemporary twist. From bold and invigorating to subtle and refined, our colognes offer a range of choices to suit every personality and occasion. Explore the art of scent with fragrances that stand on their own or experiment by layering them to create a signature fragrance that reflects your unique character. Uncover your ideal scent, and make it unmistakably yours.
+</div>
+
+<!-- Brand Section - Francese -->
+<section class="brand-section">
+    <h2>Francese</h2>
+    <div class="brand-slider" id="francese-slider">
+        <div class="product">
+            <img src="men/francesemen1.svg" alt="Francese Perfume 1">
+            <div class="caption-box">
+                <h3>Novaret</h3>
+                <p><strong>Size:</strong> 50ml</p>
+                <p><strong>Price:</strong> RM65</p>
+                <p><strong>Description:</strong> Captivating and seductive fragrance.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/francesemen2.svg" alt="Francese Perfume 2">
+            <div class="caption-box">
+                <h3>Purexs</h3>
+                <p><strong>Size:</strong> 50ml</p>
+                <p><strong>Price:</strong> RM65</p>
+                <p><strong>Description:</strong> Leave lasting rich impression.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/francesemen3.svg" alt="Francese Perfume 3">
+            <div class="caption-box">
+                <h3>Savage</h3>
+                <p><strong>Size:</strong> 50ml</p>
+                <p><strong>Price:</strong> RM65</p>
+                <p><strong>Description:</strong> Vibrant and youthful fragrance.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/francesemen4.svg" alt="Francese Perfume 4">
+            <div class="caption-box">
+                <h3>Almarac</h3>
+                <p><strong>Size:</strong> 50ml</p>
+                <p><strong>Price:</strong> RM65</p>
+                <p><strong>Description:</strong> Luxurious and confidence.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/francesemen5.svg" alt="Francese Perfume 5">
+            <div class="caption-box">
+                <h3>Millionaire</h3>
+                <p><strong>Size:</strong> 50ml</p>
+                <p><strong>Price:</strong> RM65</p>
+                <p><strong>Description:</strong> Designed for real man.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="slider-button left" onclick="moveSlider('left')">❮</button>
+    <button class="slider-button right" onclick="moveSlider('right')">❯</button>
+</section>
+
+<!-- Brand Section - Szindore -->
+<section class="brand-section">
+    <h2>Szindore</h2>
+    <div class="brand-slider" id="szindore-slider">
+        <div class="product">
+            <img src="men/bottle (1).png" alt="Szindore Men's Perfume 1">
+            <div class="caption-box">
+                    <h3>Pistachio Morning</h3>
+                    <p><strong>Size:</strong> 120ml</p>
+                    <p><strong>Price:</strong>RM$65</p>
+                    <p><strong>Description:</strong>  Top notes are pistachio, ice cream and cardamom. Middle notes are geranium, raspberry, lily and peony. Base note are tonka bean, cotton candy, creamy and cedar.</p>
+                   <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+
+        </div>
+        <div class="product">
+            <img src="men/bottle (2).png" alt="Szindore Men's Perfume 2">
+           <div class="caption-box">
+                    <h3>Peaceful Chill</h3>
+                    <p><strong>Size:</strong> 120ml</p>
+                    <p><strong>Price:</strong> RM60</p>
+
+
+<p><strong>Description:</strong> Top notes are Citron, Orange, Mint, and Black Currant.
+Middle notes are Apricot, Basil, Lemon Coriander and May Rose. Base notes are Fig, Dates, and Ambrette.</p>
+                 <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+
+        </div>
+        <div class="product">
+            <img src="men/bottle (3).png" alt="Szindore Men's Perfume 3">
+            <div class="caption-box">
+                    <h3>Beardman Essence</h3>
+                    <p><strong>Size:</strong> 120ml</p>
+                    <p><strong>Price:</strong> RM75</p>
+                    <p><strong>Description:</strong> Top notes are coriander, black pepper, vanilla. Middle notes are pineapple, bergamot and rose. Base note are amber, cedar wood, lily & patchouli.</p>
+                  <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+
+        </div>
+        <div class="product">
+            <img src="men/bottle (4).png" alt="Szindore Men's Perfume 4">
+           <div class="caption-box">
+                    <h3>Pineapple Holiday </h3>
+                    <p><strong>Size:</strong> 120ml</p>
+                    <p><strong>Price:</strong> RM75</p>
+                    <p><strong>Description:</strong> Top Notes are Coconut, Pineapple & Gardenia. Middle Notes are Vanilla & Lotus. Base Notes are Musk and
+Iso E Super.</p>
+                <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+
+        </div>
+        <div class="product">
+            <img src="men/bottle (5).png" alt="Szindore Men's Perfume 5">
+           <div class="caption-box">
+                    <h3>Blue Swim</h3>
+                    <p><strong>Size:</strong> 120ml</p>
+                    <p><strong>Price:</strong> $75</p>
+                    <p><strong>Description:</strong> Top notes are Mandarin & Bergamot. Middle notes are Sicilian Orange & Marine notes. Base notes are
+Aqua Notes, Cinger & Iso E Super.</p>
+                  <div class="product-buttons">
+    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+        <button>Buy Now</button>
+    </a>
+</div>
+                </div>
+
+        </div>
+    </div>
+    <button class="slider-button left" onclick="moveSlider('left')">❮</button>
+    <button class="slider-button right" onclick="moveSlider('right')">❯</button>
+</section>
+
+<!-- Brand Section - Lattafa -->
+<section class="brand-section">
+    <h2>Lattafa</h2>
+    <div class="brand-slider" id="lattafa-slider">
+        <div class="product">
+            <img src="men/now.png" alt="Lattafa Perfume 1">
+            <div class="caption-box">
+                <h3>Now</h3>
+                <p><strong>Size:</strong> 100ml</p>
+                <p><strong>Price:</strong> RM59</p>
+                <p><strong>Description:</strong> Modern and dynamic fragrance.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/blue.png" alt="Lattafa Perfume 2">
+            <div class="caption-box">
+                <h3>Raghba</h3>
+                <p><strong>Size:</strong> 100ml</p>
+                <p><strong>Price:</strong> RM70</p>
+                <p><strong>Description:</strong> Warm, woody fragrance with sweet notes.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/black.png" alt="Lattafa Perfume 3">
+            <div class="caption-box">
+                <h3>Oud Mood</h3>
+                <p><strong>Size:</strong> 100ml</p>
+                <p><strong>Price:</strong> RM85</p>
+                <p><strong>Description:</strong> Rich and warm Oud fragrance.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/asad.png"" alt="Lattafa Perfume 4">
+            <div class="caption-box">
+                <h3>Arabian Oud</h3>
+                <p><strong>Size:</strong> 100ml</p>
+                <p><strong>Price:</strong> RM90</p>
+                <p><strong>Description:</strong> Strong and luxurious Oud scent.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="men/ultra.png" alt="Lattafa Perfume 5">
+            <div class="caption-box">
+                <h3>Maher</h3>
+                <p><strong>Size:</strong> 100ml</p>
+                <p><strong>Price:</strong> RM80</p>
+                <p><strong>Description:</strong> Sweet and spicy fragrance.</p>
+                <div class="product-buttons">
+                    <a href="https://wa.me/60195215787?text=https://wa.link/pi9ver" target="_blank">
+                        <button>Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="slider-button left" onclick="moveSlider('left')">❮</button>
+    <button class="slider-button right" onclick="moveSlider('right')">❯</button>
+</section>
+<! <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="https://wa.me/01155051996">Contact Us</a></li>
+                   
+                    <li><a href="privacy.html">Privacy & Policy</a></li>
+                </ul>
+            </div>
+                       <div class="footer-section">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="about.html">Corporate Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/roshadmzln/profilecard/?igsh=dml3dGZod2Z6dGlr">Instagram</a></li>
+                   
+                    <li><a href="https://www.twitter.com/@roshadmzln">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sign Up</h3>
+                <ul>
+                    <li><a href="sign_up.html">Sign Up for Updates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Euphoria Essence. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+<!-- Script -->
+<script>
+    function moveSlider(direction) {
+        const slider = document.getElementById('francese-slider');
+        const width = document.querySelector('.product').offsetWidth + 20;
+        if (direction === 'left') {
+            slider.scrollLeft -= width;
+        } else {
+            slider.scrollLeft += width;
+        }
+    }
+</script>
+
+</body>
+</html>
